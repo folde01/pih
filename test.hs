@@ -26,3 +26,47 @@ myInit ns = take (length ns - 1) ns
 
 myInit2 ns = reverse (drop 1 (reverse ns))
 
+add :: (Int, Int) -> Int
+add (x,y) = x + y
+ 
+zeroto :: Int -> [Int]
+zeroto n = [1..n]
+
+myMax :: (Ord a) => [a] -> a
+myMax [] = error "maximum of empty list"
+myMax [x] = x
+myMax (x:xs)
+  | x > maxTail = x
+  | otherwise = maxTail
+  where maxTail = myMax xs
+
+myMax2 :: (Ord a) => [a] -> a
+myMax2 [] = error "maximum of empty list"
+myMax2 [x] = x
+myMax2 (x:xs)
+  | x > myMax2 xs = x
+  | otherwise = myMax2 xs
+
+myMax3 :: (Ord a) => [a] -> a
+myMax3 [] = error "maximum of empty list"
+myMax3 [x] = x
+myMax3 (x:xs) = max x (myMax3 xs)
+
+myReplicate :: (Num i, Ord i) => i -> a -> [a] 
+myReplicate n x
+  | n <= 0 = []
+  | otherwise = x:myReplicate (n-1) x
+
+-- take 3 [5,4,3,2,1]
+-- [5,4,3]
+--
+take' :: (Num i, Ord i) => i -> [a] -> [a]
+take' n _
+  | n <= 0 = []
+take' _ [] = []
+take' n (x:xs) = x : take' (n-1) xs
+
+reverse' :: [a] -> [a] 
+reverse' [] = [] 
+reverse' [x] = [x] 
+reverse' (x:xs) = reverse' xs ++ [x]
