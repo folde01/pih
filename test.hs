@@ -70,3 +70,13 @@ reverse' :: [a] -> [a]
 reverse' [] = [] 
 reverse' [x] = [x] 
 reverse' (x:xs) = reverse' xs ++ [x]
+
+repeat' :: a -> [a]
+repeat' x = x:repeat' x
+
+-- zip' [1,2] [11,22,33] -- [(1,11), (2,22)]
+zip' :: [a] -> [a] -> [(a,a)]
+zip' [] _ = []
+zip' _ [] = []
+zip' (x:xs) (y:ys) = [(x,y)] ++ zip' xs ys
+
