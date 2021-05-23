@@ -80,3 +80,10 @@ zip' [] _ = []
 zip' _ [] = []
 zip' (x:xs) (y:ys) = [(x,y)] ++ zip' xs ys
 
+-- elem' 1 [1,2] = True
+-- elem' 1 [11,111] = False
+elem' :: (Eq a) => a -> [a] -> Bool
+elem' _ [] = False 
+elem' x (y:ys) 
+  | x == y = True 
+  | otherwise = elem' x ys
